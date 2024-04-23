@@ -56,11 +56,17 @@ export default class MyPlugin extends Plugin {
 		this.registerMarkdownCodeBlockProcessor(
 			"tinychart",
 			(source: string, el: HTMLElement) => {
-				const parsedData: DataEntry[] = parseInput(source);
-				const barChart: string = generateBarChart(parsedData);
-
-				const pre = el.createEl("pre");
-				pre.innerText = barChart;
+				try {
+					const parsedData: DataEntry[] = parseInput(source);
+					const barChart: string = generateBarChart(parsedData);
+					const pre = el.createEl("pre");
+					pre.innerText = barChart;
+				} catch (error) {
+					const errorEl = el.createEl("p", {
+						attr: { style: "color: red;" },
+					});
+					errorEl.innerText = "Syntax error!";
+				}
 			}
 		);
 	}
