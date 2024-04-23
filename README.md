@@ -20,7 +20,9 @@ TinyChart is not yet available as an Obsidian community plugin. In the mean time
 ### Instructions
 
 -   Clone this repo to your `.obsidian/plugins` folder:
-    `git clone https://github.com/alincoop/obsidian-tinychart.git` or [Download ZIP file](https://github.com/alincoop/obsidian-tinychart/archive/refs/heads/main.zip)
+
+    `git clone https://github.com/alincoop/obsidian-tinychart.git`
+
 -   Install NodeJS, then run `npm i` in the command line within the plugin folder.
 -   Run `npm run build` to compile from `main.ts` to `main.js`.
 -   Reload Obsidian and enable TinyChart in settings window.
