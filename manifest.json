@@ -1,0 +1,11 @@
+{
+	"id": "tinychart",
+	"name": "TinyChart",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Turn code blocks into simple unicode charts",
+	"author": "Alin Coop",
+	"authorUrl": "https://www.linkedin.com/in/alincoop/",
+	"fundingUrl": "https://buymeacoffee.com/alincoop",
+	"isDesktopOnly": false
+}
