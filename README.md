@@ -42,21 +42,19 @@ Blueberries, 30
 Raspberries, 15
 Mangoes, 150
 ```
-```
+````
 
 ```
-Apples         █████████████------- 100
-Bananas        ██████████---------- 75
-Oranges        ████████████████████ 150
-Grapes         ███----------------- 25
-Pineapples     █------------------- 10
-Watermelons    ██████-------------- 50
-Strawberries   ████████████████████ 150
-Blueberries    ████---------------- 30
-Raspberries    ██------------------ 15
-Mangoes        ████████████████████ 150
+Apples █████████████------- 100
+Bananas ██████████---------- 75
+Oranges ████████████████████ 150
+Grapes ███----------------- 25
+Pineapples █------------------- 10
+Watermelons ██████-------------- 50
+Strawberries ████████████████████ 150
+Blueberries ████---------------- 30
+Raspberries ██------------------ 15
+Mangoes ████████████████████ 150
 ```
 
 <a href="https://www.buymeacoffee.com/alincoop" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="41" width="174"></a>
-```
-````
