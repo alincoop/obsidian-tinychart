@@ -19,7 +19,7 @@ TinyChart is not yet available as an Obsidian community plugin. In the mean time
 
 ### Instructions
 
--   Clone this repo to your `.obsidian/plugins` folder:
+-   Clone this repo to your vault's `.obsidian/plugins` folder:
 
     `git clone https://github.com/alincoop/obsidian-tinychart.git`
 
