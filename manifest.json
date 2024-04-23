@@ -1,9 +1,9 @@
 {
 	"id": "tinychart",
 	"name": "TinyChart",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"minAppVersion": "0.15.0",
-	"description": "Turn code blocks into simple unicode charts",
+	"description": "Dead simple ASCII charts for Obsidian",
 	"author": "Alin Coop",
 	"authorUrl": "https://www.linkedin.com/in/alincoop/",
 	"fundingUrl": "https://buymeacoffee.com/alincoop",
