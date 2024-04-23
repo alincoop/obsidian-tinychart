@@ -27,7 +27,7 @@ TinyChart is not yet available as an Obsidian community plugin. In the mean time
 -   Run `npm run build` to compile from `main.ts` to `main.js`.
 -   Reload Obsidian and enable TinyChart in settings window.
 
-# Example codeblock
+## Example codeblock
 
 <pre>
 ```tinychart
