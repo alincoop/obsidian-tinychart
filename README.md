@@ -4,9 +4,9 @@ Dead simple ASCII charts for [Obsidian](https://obsidian.md).
 
 ## Supported Charts
 
--   [x] Horizontal bar
--   [ ] Vertical bar
--   [ ] Line
+-   ✅ Horizontal bar
+-   🗓️ Vertical bar
+-   🗓️ Line
 
 ## Installation
 
@@ -14,13 +14,13 @@ TinyChart is not yet available as an Obsidian community plugin. In the mean time
 
 ### Requirements
 
--   (Git)[https://git-scm.com/] (optional)
--   (NodeJS)[https://nodejs.org/]
+-   [Git](https://git-scm.com/) (optional)
+-   [NodeJS](https://nodejs.org/)
 
 ### Instructions
 
 -   Clone this repo to your `.obsidian/plugins` folder:
-    `git clone https://github.com/alincoop/obsidian-tinychart.git` or (Download ZIP file)[https://github.com/alincoop/obsidian-tinychart/archive/refs/heads/main.zip]
+    `git clone https://github.com/alincoop/obsidian-tinychart.git` or [Download ZIP file](https://github.com/alincoop/obsidian-tinychart/archive/refs/heads/main.zip)
 -   Install NodeJS, then run `npm i` in the command line within the plugin folder.
 -   Run `npm run build` to compile from `main.ts` to `main.js`.
 -   Reload Obsidian and enable TinyChart in settings window.
