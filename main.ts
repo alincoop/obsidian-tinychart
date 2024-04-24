@@ -24,9 +24,8 @@ function generateBarChart(data: DataEntry[]): string {
 	);
 	const barChart: string[] = [];
 	for (const { key, value } of data) {
-		const barLength: number = Math.floor((value / maxValue) * 10);
-		const bars: string =
-			"▇▇".repeat(barLength) + " ┆".repeat(10 - barLength);
+		const barLength: number = Math.floor((value / maxValue) * 20);
+		const bars: string = "▇".repeat(barLength) + "-".repeat(20 - barLength);
 		barChart.push(`${key.padEnd(maxKeyLength + 2)} ${bars} ${value}`);
 	}
 	return barChart.join("\n");
