@@ -57,4 +57,4 @@ Raspberries    ██------------------ 15
 Mangoes        ████████████████████ 150
 </pre>
 
-<a href="https://www.buymeacoffee.com/alincoop"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=alincoop&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+<a href="https://www.buymeacoffee.com/alincoop" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
