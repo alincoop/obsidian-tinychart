@@ -62,8 +62,8 @@ export default class MyPlugin extends Plugin {
 					const pre = el.createEl("pre");
 					pre.innerText = barChart;
 				} catch (error) {
-					const errorEl = el.createEl("p", {
-						attr: { style: "color: red;" },
+					const errorEl = el.createEl("pre", {
+						attr: { style: "color: red; font-family: monospace;" },
 					});
 					errorEl.innerText = "Syntax error!";
 				}
