@@ -1,6 +1,5 @@
 import type TinyChartPlugin from "main";
 import { App, Notice, PluginSettingTab, Setting } from "obsidian";
-import { DEFAULT_SETTINGS } from "./pluginSettings";
 
 export default class SettingTab extends PluginSettingTab {
 	plugin: TinyChartPlugin;
@@ -28,12 +27,12 @@ export default class SettingTab extends PluginSettingTab {
 					.setPlaceholder("Enter a character")
 					.setValue(this.plugin.settings.fillChar)
 					.onChange(async (value) => {
-						if (value != "") {
+						if (value) {
 							// Check if the length of the input is greater than 1, if so truncate
 							if (value.length > 1) {
 								value = value.slice(0, 1);
 								text.setValue(value);
-								new Notice("Enter only a single character.");
+								new Notice("Enter only a single character");
 							}
 							// Update the plugin setting
 							this.plugin.settings.fillChar = value;
@@ -44,21 +43,24 @@ export default class SettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("Empty character")
-			.setDesc("Single character (required)")
+			.setDesc("Single character (optional)")
 			.addText((text) =>
 				text
-					.setPlaceholder("Enter an empty character")
+					.setPlaceholder("Enter a character")
 					.setValue(this.plugin.settings.emptyChar)
 					.onChange(async (value) => {
-						if (value != "") {
+						if (value) {
 							// Check if the length of the input is greater than 1, if so truncate
 							if (value.length > 1) {
 								value = value.slice(0, 1);
 								text.setValue(value);
-								new Notice("Enter only a single character.");
+								new Notice("Enter only a single character");
 							}
 							// Update the plugin setting
 							this.plugin.settings.emptyChar = value;
+							await this.plugin.saveSettings();
+						} else {
+							this.plugin.settings.emptyChar = "‎";
 							await this.plugin.saveSettings();
 						}
 					})
@@ -76,7 +78,7 @@ export default class SettingTab extends PluginSettingTab {
 						if (value.length > 1) {
 							value = value.slice(0, 1);
 							text.setValue(value);
-							new Notice("Enter only a single character.");
+							new Notice("Enter only a single character");
 						}
 						// Update the plugin setting
 						this.plugin.settings.prefixChar = value;
@@ -96,7 +98,7 @@ export default class SettingTab extends PluginSettingTab {
 						if (value.length > 1) {
 							value = value.slice(0, 1);
 							text.setValue(value);
-							new Notice("Enter only a single character.");
+							new Notice("Enter only a single character");
 						}
 						// Update the plugin setting
 						this.plugin.settings.suffixChar = value;
@@ -118,18 +120,6 @@ export default class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Code Block")
-			.setDesc("Render the chart in a codeblock instead of a paragraph")
-			.addToggle((text) =>
-				text
-					.setValue(this.plugin.settings.codeBlock)
-					.onChange(async (value) => {
-						this.plugin.settings.codeBlock = value;
-						await this.plugin.saveSettings();
-					})
-			);
-
-		new Setting(containerEl)
 			.setName("Show Labels")
 			.setDesc("Display value labels")
 			.addToggle((text) =>
@@ -137,6 +127,18 @@ export default class SettingTab extends PluginSettingTab {
 					.setValue(this.plugin.settings.showLabels)
 					.onChange(async (value) => {
 						this.plugin.settings.showLabels = value;
+						await this.plugin.saveSettings();
+					})
+			);
+
+		new Setting(containerEl)
+			.setName("Code Block (recommended)")
+			.setDesc("Render the chart in a codeblock instead of a paragraph")
+			.addToggle((text) =>
+				text
+					.setValue(this.plugin.settings.codeBlock)
+					.onChange(async (value) => {
+						this.plugin.settings.codeBlock = value;
 						await this.plugin.saveSettings();
 					})
 			);

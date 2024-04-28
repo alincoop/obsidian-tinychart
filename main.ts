@@ -1,42 +1,11 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin } from "obsidian";
-import { DEFAULT_SETTINGS, PluginSettings } from "src/pluginSettings";
-import SettingsTab from "src/settingsTab";
+import { DEFAULT_SETTINGS, PluginSettings } from "src/settings/pluginSettings";
+import SettingsTab from "src/settings/settingsTab";
+import { parseInput, generateBarChart } from "src/charts/horizontalBar";
 
 interface DataEntry {
 	key: string;
 	value: number;
-}
-
-function parseInput(inputString: string): DataEntry[] {
-	const data: DataEntry[] = [];
-	const lines: string[] = inputString.trim().split("\n");
-	for (const line of lines) {
-		const [key, value] = line.split(",");
-		const trimmedKey: string = key.trim();
-		const trimmedValue: number = parseInt(value.trim(), 10);
-		data.push({ key: trimmedKey, value: trimmedValue });
-	}
-	return data;
-}
-
-function generateBarChart(data: DataEntry[]): string {
-	let chartLength: number = this.settings.chartLength;
-	let fillChar: string = this.settings.fillChar;
-	let emptyChar: string = this.settings.emptyChar;
-
-	const maxValue: number = Math.max(...data.map((entry) => entry.value));
-	const maxKeyLength: number = Math.max(
-		...data.map((entry) => entry.key.length)
-	);
-	const barChart: string[] = [];
-	for (const { key, value } of data) {
-		const barLength: number = Math.floor((value / maxValue) * chartLength);
-		const bars: string =
-			fillChar.repeat(barLength) +
-			emptyChar.repeat(chartLength - barLength);
-		barChart.push(`${key.padEnd(maxKeyLength + 2)} ${bars} ${value}`);
-	}
-	return barChart.join("\n");
 }
 
 export default class TinyChartPlugin extends Plugin {
@@ -94,12 +63,22 @@ export default class TinyChartPlugin extends Plugin {
 			(source: string, el: HTMLElement) => {
 				try {
 					const parsedData: DataEntry[] = parseInput(source);
-					const barChart: string = generateBarChart.call(
-						this,
-						parsedData
+					const barChart: string = generateBarChart(
+						parsedData,
+						this.settings
 					);
-					const pre = el.createEl("pre");
-					pre.innerText = barChart;
+					// Set the blocktype depending on the setting
+					let codeBlockFlag: boolean = this.settings.codeBlock;
+					let blockType: "pre" | "p";
+					if (codeBlockFlag) {
+						blockType = "pre";
+					} else {
+						blockType = "p";
+					}
+					const block = el.createEl(blockType, {
+						attr: { style: "font-family: monospace;" },
+					});
+					block.innerText = barChart;
 				} catch (error) {
 					const errorEl = el.createEl("pre", {
 						attr: { style: "color: red; font-family: monospace;" },
