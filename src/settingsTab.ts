@@ -15,16 +15,18 @@ export default class SettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl("h2", { text: "TinyChart Settings" });
-		containerEl.createEl("h3", { text: "Horizontal Bar Chart" });
+		containerEl.createEl("h1", { text: "TinyChart" });
+		containerEl.createEl("h2", {
+			text: "Horizontal bar chart (default settings)",
+		});
 
 		new Setting(containerEl)
 			.setName("Fill character")
-			.setDesc("Single character (cannot be empty)")
+			.setDesc("Single character (required)")
 			.addText((text) =>
 				text
-					.setPlaceholder("Enter a fill character")
-					.setValue(this.plugin.settings.fill)
+					.setPlaceholder("Enter a character")
+					.setValue(this.plugin.settings.fillChar)
 					.onChange(async (value) => {
 						if (value != "") {
 							// Check if the length of the input is greater than 1, if so truncate
@@ -34,7 +36,7 @@ export default class SettingTab extends PluginSettingTab {
 								new Notice("Enter only a single character.");
 							}
 							// Update the plugin setting
-							this.plugin.settings.fill = value;
+							this.plugin.settings.fillChar = value;
 							await this.plugin.saveSettings();
 						}
 					})
@@ -42,11 +44,11 @@ export default class SettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("Empty character")
-			.setDesc("Single character (cannot be empty)")
+			.setDesc("Single character (required)")
 			.addText((text) =>
 				text
 					.setPlaceholder("Enter an empty character")
-					.setValue(this.plugin.settings.empty)
+					.setValue(this.plugin.settings.emptyChar)
 					.onChange(async (value) => {
 						if (value != "") {
 							// Check if the length of the input is greater than 1, if so truncate
@@ -56,7 +58,7 @@ export default class SettingTab extends PluginSettingTab {
 								new Notice("Enter only a single character.");
 							}
 							// Update the plugin setting
-							this.plugin.settings.empty = value;
+							this.plugin.settings.emptyChar = value;
 							await this.plugin.saveSettings();
 						}
 					})
@@ -64,11 +66,11 @@ export default class SettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("Prefix character")
-			.setDesc("Single character (can be empty)")
+			.setDesc("Single character (optional)")
 			.addText((text) =>
 				text
-					.setPlaceholder("Enter a prefix character")
-					.setValue(this.plugin.settings.prefix)
+					.setPlaceholder("Enter a character")
+					.setValue(this.plugin.settings.prefixChar)
 					.onChange(async (value) => {
 						// Check if the length of the input is greater than 1, if so truncate
 						if (value.length > 1) {
@@ -77,18 +79,18 @@ export default class SettingTab extends PluginSettingTab {
 							new Notice("Enter only a single character.");
 						}
 						// Update the plugin setting
-						this.plugin.settings.prefix = value;
+						this.plugin.settings.prefixChar = value;
 						await this.plugin.saveSettings();
 					})
 			);
 
 		new Setting(containerEl)
 			.setName("Suffix character")
-			.setDesc("Single character (can be empty)")
+			.setDesc("Single character (optional)")
 			.addText((text) =>
 				text
-					.setPlaceholder("Enter a suffix character")
-					.setValue(this.plugin.settings.suffix)
+					.setPlaceholder("Enter a character")
+					.setValue(this.plugin.settings.suffixChar)
 					.onChange(async (value) => {
 						// Check if the length of the input is greater than 1, if so truncate
 						if (value.length > 1) {
@@ -97,7 +99,7 @@ export default class SettingTab extends PluginSettingTab {
 							new Notice("Enter only a single character.");
 						}
 						// Update the plugin setting
-						this.plugin.settings.suffix = value;
+						this.plugin.settings.suffixChar = value;
 						await this.plugin.saveSettings();
 					})
 			);
@@ -129,7 +131,7 @@ export default class SettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("Show Labels")
-			.setDesc("Display value labels from the chart")
+			.setDesc("Display value labels")
 			.addToggle((text) =>
 				text
 					.setValue(this.plugin.settings.showLabels)

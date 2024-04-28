@@ -1,18 +1,18 @@
 export interface PluginSettings {
-	fill: string;
-	empty: string;
-	prefix: string;
-	suffix: string;
+	fillChar: string;
+	emptyChar: string;
+	prefixChar: string;
+	suffixChar: string;
 	chartLength: number;
 	codeBlock: boolean;
 	showLabels: boolean;
 }
 
 export const DEFAULT_SETTINGS: PluginSettings = {
-	fill: "█",
-	empty: "-",
-	prefix: "[",
-	suffix: "]",
+	fillChar: "█",
+	emptyChar: "-",
+	prefixChar: "[",
+	suffixChar: "]",
 	chartLength: 20,
 	codeBlock: true,
 	showLabels: true,

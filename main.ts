@@ -20,14 +20,16 @@ function parseInput(inputString: string): DataEntry[] {
 }
 
 function generateBarChart(data: DataEntry[]): string {
+	let chartLength: number = this.settings.chartLength;
 	const maxValue: number = Math.max(...data.map((entry) => entry.value));
 	const maxKeyLength: number = Math.max(
 		...data.map((entry) => entry.key.length)
 	);
 	const barChart: string[] = [];
 	for (const { key, value } of data) {
-		const barLength: number = Math.floor((value / maxValue) * 20);
-		const bars: string = "█".repeat(barLength) + "-".repeat(20 - barLength);
+		const barLength: number = Math.floor((value / maxValue) * chartLength);
+		const bars: string =
+			"█".repeat(barLength) + "-".repeat(chartLength - barLength);
 		barChart.push(`${key.padEnd(maxKeyLength + 2)} ${bars} ${value}`);
 	}
 	return barChart.join("\n");
@@ -39,6 +41,9 @@ export default class TinyChartPlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
+		// Init settings tab
+		this.addSettingTab(new SettingsTab(this.app, this));
+
 		// This adds an editor command that can perform some operation on the current editor instance
 		this.addCommand({
 			id: "insert-tinychart-template",
@@ -49,8 +54,17 @@ export default class TinyChartPlugin extends Plugin {
 			},
 		});
 
-		// Init settings tab
-		this.addSettingTab(new SettingsTab(this.app, this));
+		// TEST INSERT
+		this.addCommand({
+			id: "tinychart-test",
+			name: "Insert TinyChart test",
+			editorCallback: (editor: Editor, view: MarkdownView) => {
+				console.log(editor.getSelection());
+				editor.replaceSelection(
+					"chartLength: " + this.settings.chartLength.toString()
+				);
+			},
+		});
 
 		// This replaces csv codeblocks with tables
 		this.registerMarkdownCodeBlockProcessor("csv", (source, el) => {
@@ -76,14 +90,17 @@ export default class TinyChartPlugin extends Plugin {
 			(source: string, el: HTMLElement) => {
 				try {
 					const parsedData: DataEntry[] = parseInput(source);
-					const barChart: string = generateBarChart(parsedData);
+					const barChart: string = generateBarChart.call(
+						this,
+						parsedData
+					);
 					const pre = el.createEl("pre");
 					pre.innerText = barChart;
 				} catch (error) {
 					const errorEl = el.createEl("pre", {
 						attr: { style: "color: red; font-family: monospace;" },
 					});
-					errorEl.innerText = "Syntax error!";
+					errorEl.innerText = "[TinyChart] \n" + error;
 				}
 			}
 		);
