@@ -11,8 +11,8 @@ export interface PluginSettings {
 export const DEFAULT_SETTINGS: PluginSettings = {
 	fillChar: "█",
 	emptyChar: "-",
-	prefixChar: "[",
-	suffixChar: "]",
+	prefixChar: "",
+	suffixChar: "",
 	chartLength: 20,
 	codeBlock: true,
 	showLabels: true,

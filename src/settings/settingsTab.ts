@@ -16,7 +16,7 @@ export default class SettingTab extends PluginSettingTab {
 
 		containerEl.createEl("h1", { text: "TinyChart" });
 		containerEl.createEl("h2", {
-			text: "Horizontal bar chart (default settings)",
+			text: "Horizontal bar chart",
 		});
 
 		new Setting(containerEl)
