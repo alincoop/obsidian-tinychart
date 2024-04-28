@@ -21,6 +21,9 @@ function parseInput(inputString: string): DataEntry[] {
 
 function generateBarChart(data: DataEntry[]): string {
 	let chartLength: number = this.settings.chartLength;
+	let fillChar: string = this.settings.fillChar;
+	let emptyChar: string = this.settings.emptyChar;
+
 	const maxValue: number = Math.max(...data.map((entry) => entry.value));
 	const maxKeyLength: number = Math.max(
 		...data.map((entry) => entry.key.length)
@@ -29,7 +32,8 @@ function generateBarChart(data: DataEntry[]): string {
 	for (const { key, value } of data) {
 		const barLength: number = Math.floor((value / maxValue) * chartLength);
 		const bars: string =
-			"█".repeat(barLength) + "-".repeat(chartLength - barLength);
+			fillChar.repeat(barLength) +
+			emptyChar.repeat(chartLength - barLength);
 		barChart.push(`${key.padEnd(maxKeyLength + 2)} ${bars} ${value}`);
 	}
 	return barChart.join("\n");
