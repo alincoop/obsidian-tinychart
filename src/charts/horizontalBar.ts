@@ -1,4 +1,4 @@
-import { PluginSettings } from "src/settings/pluginSettings";
+import { PluginSettings } from "../settings/pluginSettings";
 
 interface DataEntry {
 	key: string;
