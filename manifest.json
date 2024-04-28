@@ -1,7 +1,7 @@
 {
 	"id": "tinychart",
 	"name": "TinyChart",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"minAppVersion": "0.15.0",
 	"description": "Dead simple ASCII charts for Obsidian",
 	"author": "Alin Coop",
