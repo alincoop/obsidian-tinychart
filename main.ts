@@ -1,26 +1,11 @@
-import {
-	App,
-	Editor,
-	MarkdownView,
-	Modal,
-	Notice,
-	Plugin,
-	PluginSettingTab,
-	Setting,
-} from "obsidian";
+import { App, Editor, MarkdownView, Modal, Notice, Plugin } from "obsidian";
+import { DEFAULT_SETTINGS, PluginSettings } from "src/pluginSettings";
+import SettingsTab from "src/settingsTab";
 
 interface DataEntry {
 	key: string;
 	value: number;
 }
-
-interface MyPluginSettings {
-	mySetting: string;
-}
-
-const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: "default",
-};
 
 function parseInput(inputString: string): DataEntry[] {
 	const data: DataEntry[] = [];
@@ -48,8 +33,8 @@ function generateBarChart(data: DataEntry[]): string {
 	return barChart.join("\n");
 }
 
-export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
+export default class TinyChartPlugin extends Plugin {
+	settings: PluginSettings;
 
 	async onload() {
 		await this.loadSettings();
@@ -64,8 +49,8 @@ export default class MyPlugin extends Plugin {
 			},
 		});
 
-		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new SettingTab(this.app, this));
+		// Init settings tab
+		this.addSettingTab(new SettingsTab(this.app, this));
 
 		// This replaces csv codeblocks with tables
 		this.registerMarkdownCodeBlockProcessor("csv", (source, el) => {
@@ -116,35 +101,5 @@ export default class MyPlugin extends Plugin {
 
 	async saveSettings() {
 		await this.saveData(this.settings);
-	}
-}
-
-class SettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
-
-	constructor(app: App, plugin: MyPlugin) {
-		super(app, plugin);
-		this.plugin = plugin;
-	}
-
-	display(): void {
-		const { containerEl } = this;
-
-		containerEl.empty();
-
-		containerEl.createEl("h2", { text: "TinyChart Settings" });
-
-		new Setting(containerEl)
-			.setName("Setting #1")
-			.setDesc("It's a secret")
-			.addText((text) =>
-				text
-					.setPlaceholder("Enter your secret")
-					.setValue(this.plugin.settings.mySetting)
-					.onChange(async (value) => {
-						this.plugin.settings.mySetting = value;
-						await this.plugin.saveSettings();
-					})
-			);
 	}
 }
