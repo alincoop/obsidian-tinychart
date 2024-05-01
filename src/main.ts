@@ -20,7 +20,7 @@ export default class TinyChartPlugin extends Plugin {
 
 		// This adds an editor command that can perform some operation on the current editor instance
 		this.addCommand({
-			id: "tinychart-example-hbar",
+			id: "horizontal-bar-example",
 			name: "Insert horizontal barchart example",
 			editorCallback: (editor: Editor, view: MarkdownView) => {
 				console.log(editor.getSelection());
@@ -28,24 +28,6 @@ export default class TinyChartPlugin extends Plugin {
 					"```tinychart\nApples, 100Bananas, 75\nOranges, 150\nGrapes, 25\nPineapples, 10\nWatermelons, 50\nstrawberries, 150\nBlueberries, 30\nRaspberries, 15\nMangoes, 150\n```"
 				);
 			},
-		});
-
-		// This replaces csv codeblocks with tables
-		this.registerMarkdownCodeBlockProcessor("csv", (source, el) => {
-			const rows = source.split("\n").filter((row) => row.length > 0);
-
-			const table = el.createEl("table");
-			const body = table.createEl("tbody");
-
-			for (let i = 0; i < rows.length; i++) {
-				const cols = rows[i].split(",");
-
-				const row = body.createEl("tr");
-
-				for (let j = 0; j < cols.length; j++) {
-					row.createEl("td", { text: cols[j] });
-				}
-			}
 		});
 
 		// This replaces tinychart codeblocks with tiny horizontal bar charts

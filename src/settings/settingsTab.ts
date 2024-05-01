@@ -14,11 +14,6 @@ export default class SettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl("h1", { text: "TinyChart" });
-		containerEl.createEl("h2", {
-			text: "Horizontal bar chart",
-		});
-
 		new Setting(containerEl)
 			.setName("Fill character")
 			.setDesc("Single character (required)")
@@ -120,7 +115,7 @@ export default class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Show Labels")
+			.setName("Show labels")
 			.setDesc("Display value labels")
 			.addToggle((text) =>
 				text
@@ -132,7 +127,7 @@ export default class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Code Block (recommended)")
+			.setName("Code block (recommended)")
 			.setDesc("Render the chart in a codeblock instead of a paragraph")
 			.addToggle((text) =>
 				text
