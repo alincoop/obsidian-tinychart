@@ -25,7 +25,7 @@ export default class TinyChartPlugin extends Plugin {
 			editorCallback: (editor: Editor, view: MarkdownView) => {
 				console.log(editor.getSelection());
 				editor.replaceSelection(
-					"```tinychart\nApples, 100Bananas, 75\nOranges, 150\nGrapes, 25\nPineapples, 10\nWatermelons, 50\nstrawberries, 150\nBlueberries, 30\nRaspberries, 15\nMangoes, 150\n```"
+					"```tinychart\nApples, 100\nBananas, 75\nOranges, 150\nGrapes, 25\nPineapples, 10\nWatermelons, 50\nstrawberries, 150\nBlueberries, 30\nRaspberries, 15\nMangoes, 150\n```"
 				);
 			},
 		});
