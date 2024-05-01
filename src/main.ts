@@ -1,7 +1,8 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin } from "obsidian";
 import { DEFAULT_SETTINGS, PluginSettings } from "./settings/pluginSettings";
 import SettingsTab from "./settings/settingsTab";
-import { parseInput, generateBarChart } from "./charts/horizontalBar";
+import { parseInput } from "./charts/parseInput";
+import { generateBarChart } from "./charts/horizontalBar";
 
 interface DataEntry {
 	key: string;
