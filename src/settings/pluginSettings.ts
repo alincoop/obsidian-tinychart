@@ -6,6 +6,7 @@ export interface PluginSettings {
 	chartLength: number;
 	codeBlock: boolean;
 	showLabels: boolean;
+	rightAlignLabels: boolean;
 }
 
 export const DEFAULT_SETTINGS: PluginSettings = {
@@ -16,4 +17,5 @@ export const DEFAULT_SETTINGS: PluginSettings = {
 	chartLength: 20,
 	codeBlock: true,
 	showLabels: true,
+	rightAlignLabels: true,
 };

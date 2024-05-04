@@ -127,6 +127,20 @@ export default class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
+			.setName("Right align labels")
+			.setDesc(
+				"Align value labels to the right (Recommend disabling if using no empty character)"
+			)
+			.addToggle((text) =>
+				text
+					.setValue(this.plugin.settings.rightAlignLabels)
+					.onChange(async (value) => {
+						this.plugin.settings.rightAlignLabels = value;
+						await this.plugin.saveSettings();
+					})
+			);
+
+		new Setting(containerEl)
 			.setName("Code block (recommended)")
 			.setDesc("Render the chart in a codeblock instead of a paragraph")
 			.addToggle((text) =>

@@ -18,7 +18,7 @@ export default class TinyChartPlugin extends Plugin {
 		// Init settings tab
 		this.addSettingTab(new SettingsTab(this.app, this));
 
-		// This adds an editor command that can perform some operation on the current editor instance
+		// This inserts an example horiztonal bar chart
 		this.addCommand({
 			id: "horizontal-bar-example",
 			name: "Insert horizontal barchart example",
