@@ -54,4 +54,8 @@ Raspberries    ██------------------  15
 Mangoes        ████████████████████ 150
 </pre>
 
+## Support
+
+This plugin is completely free and open source. If you really like it, I'd love to hear about how you're using it.
+
 <a href="https://www.buymeacoffee.com/alincoop" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
