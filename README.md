@@ -1,4 +1,4 @@
-# TinyChart - Obsidian Plugin
+# TinyChart
 
 Dead simple ASCII charts for [Obsidian](https://obsidian.md).
 
@@ -10,24 +10,21 @@ Dead simple ASCII charts for [Obsidian](https://obsidian.md).
 
 ## Installation
 
-TinyChart is not yet available as an Obsidian community plugin. In the mean time, feel free to clone this repo for your local use.
+1. Within Obsidian, go to "Settings" -> "Community plugins" -> "Browse"
+2. Search for "TinyChart"
+3. Install and enable the plugin
 
-### Requirements
+## Usage
 
--   [Git](https://git-scm.com/) (optional)
--   [NodeJS](https://nodejs.org/)
+Configure charts globally using the settings tab:
 
-### Instructions
+-   Fill and empty characters
+-   Optional prefix and suffix characters
+-   Chart length
+-   Enable/disable and align value labels
+-   Render chart in code block or paragraph format
 
--   Clone this repo to your vault's `.obsidian/plugins` folder:
-
-    `git clone https://github.com/alincoop/obsidian-tinychart.git`
-
--   Install NodeJS, then run `npm i` in the command line within the plugin folder.
--   Run `npm run build` to compile from `main.ts` to `main.js`.
--   Reload Obsidian and enable TinyChart in settings window.
-
-## Example codeblock
+Open the command palette in Obsidian `Ctrl + P` and search for `TinyChart` to insert an example chart block.
 
 <pre>
 ```tinychart
@@ -46,14 +43,14 @@ Mangoes, 150
 
 <pre>
 Apples         █████████████------- 100
-Bananas        ██████████---------- 75
+Bananas        ██████████----------  75
 Oranges        ████████████████████ 150
-Grapes         ███----------------- 25
-Pineapples     █------------------- 10
-Watermelons    ██████-------------- 50
+Grapes         ███-----------------  25
+Pineapples     █-------------------  10
+Watermelons    ██████--------------  50
 Strawberries   ████████████████████ 150
-Blueberries    ████---------------- 30
-Raspberries    ██------------------ 15
+Blueberries    ████----------------  30
+Raspberries    ██------------------  15
 Mangoes        ████████████████████ 150
 </pre>
 
