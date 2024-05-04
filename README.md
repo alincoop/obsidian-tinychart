@@ -1,4 +1,4 @@
-# TinyChart
+# TinyChart Plugin
 
 Dead simple ASCII charts for [Obsidian](https://obsidian.md).
 
