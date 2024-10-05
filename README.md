@@ -54,6 +54,44 @@ Raspberries    ██------------------  15
 Mangoes        ████████████████████ 150
 </pre>
 
+## Use with dataview
+You can also use [dataview](https://github.com/blacksmithgu/obsidian-dataview) to dynamically generate 
+charts, that means to create an ascii chart that live updates based on changes in your vault.
+
+The following example takes all notes in `sourceFolder`, displays a frequency distribution for the 
+`yamlField` (in this example the publication year):
+
+````md
+```dataviewjs
+// CONFIG
+const sourceFolder = "Data/articles"
+const yamlField = "year";
+//--------------------------------------------------
+const all = dv.pages(`"${sourceFolder}"`)
+    .groupBy(p => p.file.frontmatter[yamlField])
+    .values // dv-array to regular array
+    .map(p => `${p.key},${p.rows.length}`)
+    .reverse()
+dv.header(3, `Items in "${sourceFolder}" by "${yamlField}"`)
+dv.span(["~~~tinychart", ...all, "~~~"].join("\n"))
+```
+````
+
+This results in the following, live-updating chart:
+
+```txt
+Items in "Data/articles" by "year"
+2024   ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ 102
+2023   ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬              62
+2022   ▬▬▬▬▬▬▬▬▬                       32
+2021   ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬             66
+2020   ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬               59
+2019   ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬                 51
+2018   ▬▬▬▬▬▬▬▬▬▬▬▬▬                   45
+2017   ▬▬▬▬▬                           20
+2016   ▬▬▬▬▬                           17
+```
+
 ## Support
 
 This plugin is completely free and open source. If you really like it, I'd love to hear about how you're using it.
